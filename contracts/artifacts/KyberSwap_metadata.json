@@ -1,0 +1,359 @@
+{
+	"compiler": {
+		"version": "0.6.12+commit.27d51765"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_ethToERC20Rate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "purchaser",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "weiReceived",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenSpent",
+						"type": "uint256"
+					}
+				],
+				"name": "EthPurchase",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "purchaser",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "weiSpent",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenReceived",
+						"type": "uint256"
+					}
+				],
+				"name": "TokenPurchase",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "WithdrawAllEth",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ethToERC20Rate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getEthToBEP20Rate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "trader",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenAmt",
+						"type": "uint256"
+					}
+				],
+				"name": "swapERC20ForEth",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_beneficiary",
+						"type": "address"
+					}
+				],
+				"name": "swapEthForBEP20",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "withdrawAllTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"details": "KyberSwap is a base contract for managing a token trade, allowing traders to trade between a custom token and ether. This contract implements such functionality in its most fundamental form and can be extended to provide additional functionality and/or custom behavior. The external interface represents the basic interface for trading tokens, and conform the base architecture for trades. They are *not* intended to be modified / overriden. The internal interface conforms the extensible and modifiable surface of token trades. Override the methods to add functionality. Consider using 'super' where appropiate to concatenate behavior.",
+			"events": {
+				"EthPurchase(address,address,uint256,uint256)": {
+					"params": {
+						"beneficiary": "who got the tokens",
+						"purchaser": "who paid for the tokens",
+						"tokenSpent": "amount of tokens for purchase",
+						"weiReceived": "weis paid purchased"
+					}
+				},
+				"TokenPurchase(address,address,uint256,uint256)": {
+					"params": {
+						"beneficiary": "who got the tokens",
+						"purchaser": "who paid for the tokens",
+						"tokenReceived": "amount of tokens purchased",
+						"weiSpent": "weis paid for purchase"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"swapERC20ForEth(address,uint256)": {
+					"details": "low level token purchase ***DO NOT OVERRIDE***",
+					"params": {
+						"_tokenAmt": "amount of token spent for the purchase",
+						"trader": "Address performing the token purchase"
+					}
+				},
+				"swapEthForBEP20(address)": {
+					"details": "low level token purchase ***DO NOT OVERRIDE***",
+					"params": {
+						"_beneficiary": "Address performing the token purchase"
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"title": "KyberSwap",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"EthPurchase(address,address,uint256,uint256)": {
+					"notice": "Event for eth purchase logging"
+				},
+				"TokenPurchase(address,address,uint256,uint256)": {
+					"notice": "Event for token purchase logging"
+				}
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/KyberSwap.sol": "KyberSwap"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/KyberSwap.sol": {
+			"keccak256": "0x32cb5f190be8e264a37c030d8bc16db3f9fc382003e2e4f9234a8835d2b0d051",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a3e907b557ac181301e962c34ff9872a47cab9a7bbbf3f595714e34266078bb7",
+				"dweb:/ipfs/QmWRz7pecQXvm7HKEWHaYAUs5xGKt1M4PTF4WtgP1rh8R9"
+			]
+		},
+		"contracts/helpers/Context.sol": {
+			"keccak256": "0x05ca7bc92baaa52f08d3bd769a9420bee940aa9bbd543f1defb0484223071551",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6c1160c2c8759e09e663adc7524e42520cbb1282f3a48eb3d7ad2ce73d33006",
+				"dweb:/ipfs/QmagsgBs6zpPxxPCQMzvRDeXNqwUGUfcJnkEQ8igMRrJrk"
+			]
+		},
+		"contracts/helpers/IERC20.sol": {
+			"keccak256": "0x292069899909101cfde215c2e42a05a8e773d48bfdf9fa2f47b02d1c6a959714",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://56cb2b0976a8951b5052847cf671e8778eda6da946deb41ea3780572da00ca7b",
+				"dweb:/ipfs/QmPpUvig7YNjUkyXjXgMTbhSBT15gxudFZfnWJKxhEtANi"
+			]
+		},
+		"contracts/helpers/Ownable.sol": {
+			"keccak256": "0x42892e1113471a7cad7d1768bf3f4ebff54589757b9193d238eed40152027c40",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://84cdb1541b3295143cc9a7369ba1807e389345df052169c0fe54a597f0f5e6ab",
+				"dweb:/ipfs/QmZYem7izr9txaJ6X92tMuX6D31rm3KUPbvF2TqnsJM7e9"
+			]
+		},
+		"contracts/helpers/SafeMath.sol": {
+			"keccak256": "0xe4a8c77aca97eefb91d6daa4d39d1938da585065fb9471945ed96d1a99482e82",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c0560e390e3e1f6fb89b926a4573061e5029171fe3c1f3d68c02d1d29fa3b0a9",
+				"dweb:/ipfs/QmdMadfd8R34g8sbeNwWdM2vhdNyNFJ6qpCMAb9zfyqfQZ"
+			]
+		}
+	},
+	"version": 1
+}
